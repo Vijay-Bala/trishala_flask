@@ -1,0 +1,43 @@
+<!-- prediction.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <form action="/search" method="POST">
+    <h1>Prediction Result</h1>
+    
+    <p>
+        The predicted total number of crimes for <strong>{{ location.upper() }}</strong> in the year <strong>{{ year }}</strong> is: <span id="prediction">{{ prediction }}</span>.
+    </p>    
+
+    <!-- Display warning image if the predicted total crimes exceed 100 -->
+    {% if warning_image %}
+        <img src="/static/WARNING.webp" alt="Warning" style="width: 100px; height: 100px;">
+        <p style="color: red;">WARNING: The predicted total crimes exceed 100. Please be cautious!</p>
+    {% endif %}
+
+    <!-- Hidden input fields for location and year -->
+    <input type="hidden" name="location" value="{{ location }}">
+    <input type="hidden" name="year" value="{{ year }}">
+
+    <!-- Button to view accused list -->
+    <input type="submit" value="View Accused List" id="accusedbutton" />
+</form>
+
+    <!-- JavaScript to handle button click event -->
+    <!-- <script>
+        // Get the button element
+        var button = document.getElementById("accusedbutton");
+
+        // Add click event listener to the button
+        button.addEventListener("click", function() {
+            // Redirect to the index page where accused details will be displayed
+            window.location.href = "index.html";  // Change this to the appropriate URL if necessary
+        });
+    </script> -->
+</body>
+</html>

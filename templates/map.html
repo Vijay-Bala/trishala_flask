@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="center">
+    <form action="/predict" method="POST">
+      <img usemap="#image-map" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Karnataka_districts_map.svg/530px-Karnataka_districts_map.svg.png" alt="Your Image">
+      <div class="hide" id="detail">
+        <h4 class="district-text" id="distrcit-text"></h4>
+        <div class="inputs">
+          <select id="village" name="village_name">
+          </select>
+          <select id="year" name="year"> <!-- Add name attribute -->
+          </select>
+        </div>
+        <!-- Add hidden input fields for location and year -->
+        <input type="hidden" id="location" name="location" value="">
+        <input type="hidden" id="year_selected" name="year_selected" value="">
+
+        <button type="submit" id="submitButton" class="hide">SUBMIT</button>
+      </div>
+    </form>
+<!-- <div id="selected-info">
+    Selected Location: <span id="selected-location">None</span><br>
+    Selected Year: <span id="selected-year">None</span>
+</div> -->
+
+  </div>
+  <map name="image-map">
+    <area id="bagalkot" coords="158,243,183,259,192,267,194,285,213,295,239,293,231,281,253,288,258,276,270,288,289,283,283,261,255,248,237,235,214,224,200,204,151,222,198,193,201,219,156,242,163,221,189,210,204,215" shape="poly"></area>
+    <area id="ballari" coords="323,385,302,397,292,378,300,353,317,361,307,336,360,284,366,308,371,352,366,376" shape="poly"></area>
+  </map>
+</body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var villageSelect = document.getElementById("village");
+    var yearSelect = document.getElementById("year");
+    
+    villageSelect.addEventListener("change", function() {
+        var selectedLocation = this.value;
+        document.getElementById("selected-location").textContent = selectedLocation;
+        document.getElementById("location").value = selectedLocation;
+    });
+    
+    yearSelect.addEventListener("change", function() {
+        var selectedYear = this.value;
+        document.getElementById("selected-year").textContent = selectedYear;
+        document.getElementById("year_selected").value = selectedYear;
+    });
+});
+
+</script>
+</html>

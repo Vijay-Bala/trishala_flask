@@ -1,0 +1,32 @@
+<!-- results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Person Name</th>
+                <th>Age</th>
+                <th>Caste</th>
+                <th>Sex</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for accused in accused_data %}
+            <tr>
+                <td>{{ accused['Person_Name'] }}</td>
+                <td>{{ accused['age'] }}</td>
+                <td>{{ accused['Caste'] }}</td>
+                <td>{{ accused['Sex'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
